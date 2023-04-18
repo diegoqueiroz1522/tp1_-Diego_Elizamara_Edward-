@@ -12,7 +12,7 @@ import json
 import psycopg2 as pgadmim
 import sys
 from tqdm import tqdm
-#import schema.sql
+import schema.sql
 
 
 
