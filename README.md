@@ -14,5 +14,15 @@ Para utilizar este repositório siga os passos abaixo:
 3) Inserir o meta dados da amazon na pasta do projeto clonado.     
 
 4) Executar o projeto
+    
     * Ferramentas necessárias: Docker
-    * comando do docker a seguir 
+     
+Execute o comando a baixo para executar o projeto:
+ `docker compose up -d`
+ 
+Após subir o container, execute o script `tp1_3.2.py`:
+  `python tp1_3.2.py `
+  
+Para realizar a consulta, execute o outro script,ou utilize as querys que possuem
+no aquivo `tp1_3.3.py`:
+  `python tp1_3.3.py`
