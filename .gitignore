@@ -131,3 +131,8 @@ dmypy.json
 # local folders
 postgres-data/
 .tp1/
+
+#arquivo meta
+amazon-meta.txt
+amazon2.txt
+teste.txt
