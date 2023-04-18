@@ -18,7 +18,7 @@ LIMIT 5) UNION (SELECT *
 cursor.execute("""
 SELECT *
 FROM Product
-WHERE product_id <> 'X.id' AND salesrank > (SELECT salesrank FROM Product WHERE product_id = 'X.id')
+WHERE product_id <> 'X.id' AND salesrank < (SELECT salesrank FROM Product WHERE product_id = 'X.id')
 ORDER BY salesrank DESC
 ;""")
 # ## X é a row do produto dado
