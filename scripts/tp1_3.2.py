@@ -347,4 +347,4 @@ if __name__ == '__main__':
     # with open(output_file_category, "w") as f:
     #         for value in values_table_category:
     #             f.write(value)
-    #             f.write("\n")   claver
+    #             f.write("\n")   
