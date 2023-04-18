@@ -12,7 +12,7 @@ import json
 import psycopg2 as pgadmim
 import sys
 from tqdm import tqdm
-import schema.sql
+#import schema.sql
 
 
 
@@ -23,7 +23,7 @@ Conexao do banco ou tentar ne
 
 def conecta_db():
   con = pgadmim.connect(host='localhost',
-                         port= '55432' 
+                         port= '55432', 
                          database='amazon',
                          user='postgres', 
                          password='postgres')
