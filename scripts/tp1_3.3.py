@@ -20,7 +20,7 @@ sql =(f"""SELECT data, costumer_id, rating, vote, helpful
         WHERE product_id = '{variavel_id}'
         ORDER BY helpful DESC, rating DESC LIMIT 5; 
         SELECT data, costumer_id, rating, vote, helpful 
-        FROM review WHERE product_id = 'ID_DO_PRODUTO' 
+        FROM review WHERE product_id = '{variavel_id}' 
         ORDER BY helpful ASC, rating DESC LIMIT 5;""") 
 
 c.execute(sql)
