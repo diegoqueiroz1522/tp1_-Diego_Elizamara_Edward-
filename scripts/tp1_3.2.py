@@ -55,8 +55,8 @@ sql = """DROP TABLE IF EXISTS product, review, category, similar_itens;
 c.execute(sql)
 
 loc_arquivo = '../amazon-meta.txt'
+# loc_arquivo = '../teste.txt'
 arquivo = open(loc_arquivo)
-
 list_product=[]
 list_review=[]
 list_category=[]
@@ -74,6 +74,7 @@ group=''
 salesrank = ''
 
 for x in arquivo:
+
 
     if 'Id:   ' in x:
         y = x.replace('\n', '')
@@ -113,6 +114,7 @@ for x in arquivo:
     list_product=[]
 
 arquivo = open(loc_arquivo)
+
 for x in arquivo:
     if reviews:
         if x != '\n':
@@ -154,16 +156,33 @@ for x in arquivo:
         reviews = True
 
     elif '   |' in x:
-        padrao = r"[(\d+)]"
-        categoria = re.findall(padrao, x)
-        a = x.split('|')[1:]
-        for k in range(len(a)):
-            a[k] = a[k].replace(']', '')
-            a[k] = a[k].split('[')
+        # padrao = r"[(\d+)]"
+        # categoria = re.findall(padrao, x)
+        a = x.split('|')
+        
+        # print("cat:",categoria)
+        for k in a:
+            # print("k", k)
+            match = re.search(r'\[(\d+)\]', k)
+            # print("match", match)
+            if match:  
+                categoria = k.replace(match.group(0), '').strip()
+                id_categoria = match.group(1)
+                # print(id_categoria, categoria)
 
-            id_categoria = a[k][1]
-            if tuple((categoria, id_categoria)) not in list_categorias:
-                list_categorias.append((id, categoria, id_categoria))
+                if tuple((categoria, id_categoria)) not in list_categorias:
+                    list_categorias.append((id, categoria, id_categoria))
+
+        # for k in range(len(a)):
+        #     # print("k", k)
+
+        #     a[k] = a[k].replace(']', '')
+        #     a[k] = a[k].split('[')
+        #     id_categoria = a[k][1]
+
+        #     categoria = a[k][0]
+        #     print("ak:",a[k][0], a[k][1])
+
                 
 
     cont+=1 
@@ -199,6 +218,7 @@ for x in arquivo:
         cont = 0
 
 
+
 query= "INSERT INTO similar_itens (product_id, id_item) VALUES %s;"
 
 execute_values(c, query, list_similar)
@@ -211,7 +231,7 @@ execute_values(c, query, list_categorias)
 del list_categorias
 
 
-query= "INSERT INTO review (product_id, data, costumer, rating, vote, helpful) VALUES %s;"
+query= "INSERT INTO review (product_id, data, costumer_id, rating, vote, helpful) VALUES %s;"
 
 execute_values(c, query, list_review)
 del list_review
